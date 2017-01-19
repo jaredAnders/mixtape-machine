@@ -21,3 +21,4 @@
 # Ignore notes
 notes.txt
 spotify_test.rb
+.byebug_history

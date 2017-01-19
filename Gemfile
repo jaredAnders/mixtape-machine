@@ -37,5 +37,8 @@ gem 'spring',        group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+group :development do
+  gem 'byebug'
+end
 
 gem 'figaro'
