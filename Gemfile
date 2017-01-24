@@ -44,4 +44,5 @@ group :development, :test do
   gem 'rubocop'
 end
 
+gem 'devise', '~> 4.1.1'
 gem 'figaro'
