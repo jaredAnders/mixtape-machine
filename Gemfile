@@ -47,3 +47,4 @@ end
 gem 'devise', '~> 4.1.1'
 gem 'figaro'
 gem 'omniauth-spotify'
+gem 'rspotify'

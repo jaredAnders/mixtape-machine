@@ -1,8 +1,11 @@
 class PagesController < ApplicationController
-  before_action :set_redirect_uri
+  # before_action :set_redirect_uri
 
   def index
-    @client_id = ENV['SPOTIFY_CLIENT_ID']
+    # @client_id = ENV['SPOTIFY_CLIENT_ID']
+    if user_signed_in?
+      @arctic_monkeys = RSpotify::Artist.find('7Ln80lUS6He07XvHI8qqHH').name
+    end
   end
 
   def spotify_callback

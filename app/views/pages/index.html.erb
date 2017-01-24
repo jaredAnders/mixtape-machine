@@ -3,10 +3,12 @@
 <% if user_signed_in? %>
   <%= link_to 'Sign out',  destroy_user_session_path, method: 'DELETE' %>
   <br>
-  <h1>signed in!</h1>
+  <h3>signed in!</h3>
+  <p><%= @arctic_monkeys %></p>
+
 <% else %>
   <%= link_to 'Sign in Devise',  new_user_session_path %>
   <%= link_to 'Sign in Original', "https://accounts.spotify.com/authorize/?client_id=#{@client_id}&response_type=code&redirect_uri=#{@redirect_uri}&scope=user-read-private%20user-read-email&state=34fFs29kd09" %>
   <br>
-  <h1>not signed in</h1>
+  <h3>not signed in</h3>
 <% end %>
