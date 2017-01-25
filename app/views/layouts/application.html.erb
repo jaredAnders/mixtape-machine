@@ -8,7 +8,30 @@
 </head>
 <body>
 
-<%= yield %>
+<nav>
+  <div class="nav-wrapper container">
+    <a href="#!" class="brand-logo">MixtapeMachine</a>
+    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
+      <% if user_signed_in? %>
+        <li><%= link_to 'Sign out',  destroy_user_session_path, method: 'DELETE' %></li>
+      <% else %>
+        <li><%= link_to 'Sign in',  new_user_session_path %></li>
+      <% end %>
+    </ul>
+    <ul class="side-nav" id="mobile-demo">
+      <% if user_signed_in? %>
+        <li><%= link_to 'Sign out',  destroy_user_session_path, method: 'DELETE' %></li>
+      <% else %>
+        <li><%= link_to 'Sign in',  new_user_session_path %></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <%= yield %>
+</div>
 
 </body>
 </html>
