@@ -1,10 +1,12 @@
 class PagesController < ApplicationController
-  # before_action :set_redirect_uri
-
   def index
-    # @client_id = ENV['SPOTIFY_CLIENT_ID']
     if user_signed_in?
-      @arctic_monkeys = RSpotify::Artist.find('7Ln80lUS6He07XvHI8qqHH').name
+      # token = session[:omniauth][:credentials][:token]
+      # response = `curl -X GET "https://api.spotify.com/v1/users/1262470196/playlists?limit=3" -H "Accept: application/json" -H "Authorization: Bearer BQDkQiXUrPW6JkBrKd0Vi2Dzi7dBwPjla1B0WkkEhsV9PF1DZUrQZF7K2PLsk4FE7Yh8PnUUu93QRzgIdj6Ry41XJ3ybZe6wb-Ve9BOgglrOC3VA_AxYD30ha5QwViGt13spWJoqfEKzNtT5dea08fKkj-_w2nOolnzdCgzTrKMJqeS5Jt_J5VLSUnvA-kTX0zx9-zTMf1AtQQ1kDLZ9vys9yRyDgl_G5Kes-NhZCFmQJm88z9WDj5OzjzTX0S_29Meu0Or-nHzaI_ARHw6Wkt4"`
+      # top_playlists = JSON.parse(response)
+
+      @user = RSpotify::User.new(session[:omniauth])
+      @artists = RSpotify::Artist.search('Tobacco').first
     end
   end
 

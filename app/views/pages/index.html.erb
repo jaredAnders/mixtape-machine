@@ -1,5 +1,8 @@
 <% if user_signed_in? %>
-  <p><%= @arctic_monkeys %></p>
+  <!-- <p><%= @arctic_monkeys %></p> -->
+  <p><%= session[:omniauth] %></p>
+  <p><%= @user.inspect %></p>
+  <p><%= @artists.inspect %></p>
 <% else %>
   <h3>Welcome to the MixtapeMachine</h3>
   <!-- <%= link_to 'Sign in Original', "https://accounts.spotify.com/authorize/?client_id=#{@client_id}&response_type=code&redirect_uri=#{@redirect_uri}&scope=user-read-private%20user-read-email&state=34fFs29kd09" %> -->
