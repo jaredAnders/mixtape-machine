@@ -1,4 +1,20 @@
 <% if user_signed_in? %>
+
+  <h5>Top 5 tracks</h5>
+  <ol class="collection">
+    <% @top_5_tracks.each do |track| %>
+      <li class="collection-item avatar">
+        <%= image_tag(track["album"]["images"].last["url"], class: 'circle') %>
+        <span class="title">
+          <%= track["name"] %> by <%= track["artists"][0]["name"] %> <br>
+        </span>
+        <p>
+          <i>id: <%= track["id"] %></i>
+
+        </p>
+      </li>
+    <% end %>
+  </ol>
   <h5>Recently added tracks</h5>
   <ol class="collection">
     <% @recent_5_tracks.each do |track| %>

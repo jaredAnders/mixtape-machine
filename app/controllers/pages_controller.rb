@@ -9,13 +9,13 @@ class PagesController < ApplicationController
 
       recent_5_response = `curl -X GET "https://api.spotify.com/v1/me/tracks?limit=5" -H "Accept: application/json" -H "Authorization: Bearer #{token}"`
 
-      # top_5_response = `curl -X GET "https://api.spotify.com/v1/me/top/tracks?limit=5" -H "Accept: application/json" -H "Authorization: Bearer #{token}"`
+      top_5_response = `curl -X GET "https://api.spotify.com/v1/me/top/tracks?limit=5" -H "Accept: application/json" -H "Authorization: Bearer #{token}"`
 
       # refresh = `curl -H "Authorization: Basic ZjM4Zj...Y0MzE=" -d grant_type=refresh_token -d refresh_token=#{refresh_token} https://accounts.spotify.com/api/token`
 
       @playlists = JSON.parse(playlists_response).first
       @recent_5_tracks = JSON.parse(recent_5_response)["items"]
-      # @top_5_tracks = JSON.parse(top_5_response)
+      @top_5_tracks = JSON.parse(top_5_response)["items"]
       # binding.pry
 
 
