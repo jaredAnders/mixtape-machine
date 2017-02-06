@@ -1,12 +1,31 @@
 class PagesController < ApplicationController
   def index
     if user_signed_in?
-      # token = session[:omniauth][:credentials][:token]
-      # response = `curl -X GET "https://api.spotify.com/v1/users/1262470196/playlists?limit=3" -H "Accept: application/json" -H "Authorization: Bearer BQDkQiXUrPW6JkBrKd0Vi2Dzi7dBwPjla1B0WkkEhsV9PF1DZUrQZF7K2PLsk4FE7Yh8PnUUu93QRzgIdj6Ry41XJ3ybZe6wb-Ve9BOgglrOC3VA_AxYD30ha5QwViGt13spWJoqfEKzNtT5dea08fKkj-_w2nOolnzdCgzTrKMJqeS5Jt_J5VLSUnvA-kTX0zx9-zTMf1AtQQ1kDLZ9vys9yRyDgl_G5Kes-NhZCFmQJm88z9WDj5OzjzTX0S_29Meu0Or-nHzaI_ARHw6Wkt4"`
-      # top_playlists = JSON.parse(response)
+      @user = RSpotify::User.new(session[:omniauth]).credentials
+      @id = session[:omniauth]["extra"]["raw_info"]["id"]
+      token = @user["token"]
 
-      @user = RSpotify::User.new(session[:omniauth])
-      @artists = RSpotify::Artist.search('Tobacco').first
+      playlists_response = `curl -X GET "https://api.spotify.com/v1/me/playlists" -H "Accept: application/json" -H "Authorization: Bearer #{token}"`
+
+      recent_5_response = `curl -X GET "https://api.spotify.com/v1/me/tracks?limit=5" -H "Accept: application/json" -H "Authorization: Bearer #{token}"`
+
+      # top_5_response = `curl -X GET "https://api.spotify.com/v1/me/top/tracks?limit=5" -H "Accept: application/json" -H "Authorization: Bearer #{token}"`
+
+      # refresh = `curl -H "Authorization: Basic ZjM4Zj...Y0MzE=" -d grant_type=refresh_token -d refresh_token=#{refresh_token} https://accounts.spotify.com/api/token`
+
+      @playlists = JSON.parse(playlists_response).first
+      @recent_5_tracks = JSON.parse(recent_5_response)["items"]
+      # @top_5_tracks = JSON.parse(top_5_response)
+      # binding.pry
+
+
+      # binding.pry
+
+
+      # @artists = RSpotify::Artist.search('Tobacco').first
+
+
+
     end
   end
 

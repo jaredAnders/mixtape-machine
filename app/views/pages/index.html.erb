@@ -1,8 +1,18 @@
 <% if user_signed_in? %>
-  <!-- <p><%= @arctic_monkeys %></p> -->
-  <p><%= session[:omniauth] %></p>
-  <p><%= @user.inspect %></p>
-  <p><%= @artists.inspect %></p>
+  <h5>Recently added tracks</h5>
+  <ol class="collection">
+    <% @recent_5_tracks.each do |track| %>
+      <li class="collection-item avatar">
+        <%= image_tag(track["track"]["album"]["images"].last["url"], class: 'circle') %>
+        <span class="title">
+          <%= track["track"]["name"] %> by <%= track["track"]["album"]["artists"][0]["name"] %> <br>
+        </span>
+        <p>
+          <i>id: <%= track["track"]["id"] %></i>
+        </p>
+      </li>
+    <% end %>
+  </ol>
 <% else %>
   <h3>Welcome to the MixtapeMachine</h3>
   <!-- <%= link_to 'Sign in Original', "https://accounts.spotify.com/authorize/?client_id=#{@client_id}&response_type=code&redirect_uri=#{@redirect_uri}&scope=user-read-private%20user-read-email&state=34fFs29kd09" %> -->
