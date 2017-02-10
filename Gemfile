@@ -46,7 +46,10 @@ end
 
 gem 'devise', '~> 4.1.1'
 gem 'figaro'
+gem 'foreman'
 gem 'materialize-sass'
 gem 'omniauth-spotify'
 gem 'react_on_rails', '~> 6'
 gem 'rspotify'
+
+gem 'mini_racer', platforms: :ruby
